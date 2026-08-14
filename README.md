@@ -177,6 +177,7 @@ devices:
 |------|------|
 | 构建时报 Docker Hub **i/o timeout** | `config.env` 里设国内 `BASE_IMAGE` 后重跑 `make build` |
 | clone 失败 | 检查能否访问 GitHub；可改用代理或镜像 |
+| clone 报 `upload-pack: not our ref` | 是 GitHub 拒绝按历史 SHA 拉子模块。脚本已改为只更新当前版本的子模块；重新 `make clone` 即可 |
 | `esp_idf` 报找不到 export.sh | 先 `make clone` / `make status` 确认仓库在 `data/sdk/esp` |
 | `idf.py` 找不到 / Python 报错 | `make install-tools` |
 | SSH 连不上 | `make logs`；检查端口占用与 `SSH_HOST_PORT` |
