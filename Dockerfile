@@ -3,15 +3,15 @@
 #
 # BASE_IMAGE 可通过 --build-arg 覆盖（国内拉不动 Docker Hub 时用镜像站）
 ARG BASE_IMAGE=docker.m.daocloud.io/library/ubuntu:22.04
-ARG CONTAINER_HOME=/usmile
-ARG CONTAINER_USER=usmile
-ARG SSH_PASSWORD=usmile123
+ARG CONTAINER_HOME=/toolchain
+ARG CONTAINER_USER=toolchain
+ARG SSH_PASSWORD=toolchain168
 
 FROM ${BASE_IMAGE}
 
-ARG CONTAINER_HOME=/usmile
-ARG CONTAINER_USER=usmile
-ARG SSH_PASSWORD=usmile123
+ARG CONTAINER_HOME=/toolchain
+ARG CONTAINER_USER=toolchain
+ARG SSH_PASSWORD=toolchain168
 
 ENV DEBIAN_FRONTEND=noninteractive \
     LANG=C.UTF-8 \
@@ -66,13 +66,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && ln -sf /usr/bin/python3 /usr/bin/python \
     && printf 'export HOME=%s\nexport CONTAINER_HOME=%s\ncd %s/workspace 2>/dev/null || true\n' \
         "${CONTAINER_HOME}" "${CONTAINER_HOME}" "${CONTAINER_HOME}" \
-        > /etc/profile.d/usmile-home.sh
+        > /etc/profile.d/toolchain-home.sh
 
 COPY rootfs/ /
 RUN chmod +x /usr/local/bin/entrypoint.sh \
     && chown -R "${CONTAINER_USER}:${CONTAINER_USER}" "${CONTAINER_HOME}" \
-    && if [ -f /usmile/.bashrc ]; then ln -sf /usmile/.bashrc /root/.bashrc; fi \
-    && if [ -f /usmile/.profile ]; then ln -sf /usmile/.profile /root/.profile; fi
+    && if [ -f "${CONTAINER_HOME}/.bashrc" ]; then ln -sf "${CONTAINER_HOME}/.bashrc" /root/.bashrc; fi \
+    && if [ -f "${CONTAINER_HOME}/.profile" ]; then ln -sf "${CONTAINER_HOME}/.profile" /root/.profile; fi
 
 EXPOSE 22
 WORKDIR ${CONTAINER_HOME}/workspace

@@ -25,7 +25,7 @@ elif [ -f /etc/bash_completion ]; then
 fi
 
 # ---------------------------------------------------------------------------
-# ESP-IDF 6.0.2（路径相对容器 HOME=/usmile，与宿主机用户名无关）
+# ESP-IDF 6.0.2（路径相对容器 HOME=/toolchain，与宿主机用户名无关）
 # ---------------------------------------------------------------------------
 
 alias esp_idf='unset PYTHONPATH && unset VIRTUAL_ENV && \

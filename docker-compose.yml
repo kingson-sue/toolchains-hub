@@ -5,8 +5,9 @@ services:
       dockerfile: Dockerfile
       args:
         BASE_IMAGE: ${BASE_IMAGE:-docker.m.daocloud.io/library/ubuntu:22.04}
-        CONTAINER_HOME: ${CONTAINER_HOME:-/usmile}
-        SSH_PASSWORD: ${SSH_PASSWORD:-usmile123}
+        CONTAINER_HOME: ${CONTAINER_HOME:-/toolchain}
+        CONTAINER_USER: ${CONTAINER_USER:-toolchain}
+        SSH_PASSWORD: ${SSH_PASSWORD:-toolchain168}
     image: ${IMAGE_NAME:-toolchains-hub}:${IMAGE_TAG:-multi}
     container_name: ${CONTAINER_NAME:-toolchains-hub}
     hostname: ${CONTAINER_NAME:-toolchains-hub}
@@ -23,22 +24,22 @@ services:
 
     volumes:
       # ESP-IDF 源码（make clone 从 GitHub 拉到 data/sdk/esp）
-      - ${SDK_DIR}:${CONTAINER_HOME:-/usmile}/sdk
+      - ${SDK_DIR}:${CONTAINER_HOME:-/toolchain}/sdk
 
       # 工具链 + Python venv（install-tools 写入 data/tools）
-      - ${IDF_DATA_ROOT}/tools/${IDF_TOOLS_DIR:-espressif}:${CONTAINER_HOME:-/usmile}/.espressif
+      - ${IDF_DATA_ROOT}/tools/${IDF_TOOLS_DIR:-espressif}:${CONTAINER_HOME:-/toolchain}/.espressif
 
       # 工程目录（与 data/ 同级的 workspace/）
-      - ${IDF_WORKSPACE}:${CONTAINER_HOME:-/usmile}/workspace
+      - ${IDF_WORKSPACE}:${CONTAINER_HOME:-/toolchain}/workspace
 
     environment:
-      HOME: ${CONTAINER_HOME:-/usmile}
-      CONTAINER_HOME: ${CONTAINER_HOME:-/usmile}
-      CONTAINER_USER: ${CONTAINER_USER:-usmile}
+      HOME: ${CONTAINER_HOME:-/toolchain}
+      CONTAINER_HOME: ${CONTAINER_HOME:-/toolchain}
+      CONTAINER_USER: ${CONTAINER_USER:-toolchain}
       # 与宿主机 UID/GID 对齐，解决 workspace bind mount 权限冲突
       HOST_UID: ${HOST_UID:-1000}
       HOST_GID: ${HOST_GID:-1000}
       LANG: C.UTF-8
       LC_ALL: C.UTF-8
 
-    working_dir: ${CONTAINER_HOME:-/usmile}/workspace
+    working_dir: ${CONTAINER_HOME:-/toolchain}/workspace

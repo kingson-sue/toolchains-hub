@@ -15,7 +15,7 @@
 │   └── tools/                          # 工具链 + venv（gitignore）
 └── workspace/                          # 开发工程（与 data 同级，内容 gitignore）
 
-容器 HOME 固定为 /usmile
+容器 HOME 固定为 /toolchain
 SSH: 宿主机 3022 起自动选空闲端口 -> 容器 22
 ```
 
@@ -79,7 +79,9 @@ cd ~/workspace && idf.py --version
 | `CONTAINER_NAME` | 容器名；留空时按宿主机用户名生成 | 空 = `toolchains-hub-$USER` |
 | `SSH_HOST_PORT` | 宿主机 SSH 端口；留空或被占用时自动选择并写回 | 空 = 自动 |
 | `SSH_HOST_PORT_START` | 自动选择端口的起始值 | `3022` |
-| `SSH_PASSWORD` | SSH 密码 | `usmile123` |
+| `CONTAINER_USER` | 容器 SSH 用户 | `toolchain` |
+| `CONTAINER_HOME` | 容器 HOME | `/toolchain` |
+| `SSH_PASSWORD` | SSH 密码（root 同步设置） | `toolchain168` |
 | `IDF_DATA_ROOT` | 数据根目录 | 空 = `./data` |
 | `IDF_WORKSPACE` | 工程映射目录 | 空 = `./workspace` |
 | `IDF_URL` | ESP-IDF 仓库 | `https://github.com/espressif/esp-idf.git` |
@@ -121,7 +123,7 @@ make config
 
 `workspace/` 与 `data/` 同级，不在 tar 包内；拷贝整个工程目录即可带走工程。
 
-> 工具链/venv 是在容器（Ubuntu 22.04 + Python 3.10，`HOME=/usmile`）里生成的。  
+> 工具链/venv 是在容器（Ubuntu 22.04 + Python 3.10，`HOME=/toolchain`）里生成的。  
 > 目标机器用同一镜像定义部署即可复用。
 
 ## 容器内开发

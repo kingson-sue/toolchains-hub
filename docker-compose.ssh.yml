@@ -2,4 +2,4 @@
 services:
   toolchains-hub:
     volumes:
-      - ${HOST_SSH_DIR}:${CONTAINER_HOME:-/usmile}/.ssh:ro
+      - ${HOST_SSH_DIR}:${CONTAINER_HOME:-/toolchain}/.ssh:ro

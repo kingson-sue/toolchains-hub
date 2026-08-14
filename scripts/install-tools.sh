@@ -26,7 +26,7 @@ docker_run exec \
     -w "${CONTAINER_HOME}" "${CONTAINER_NAME}" \
     bash -lc "
         set -euo pipefail
-        source /etc/profile.d/usmile-home.sh 2>/dev/null || true
+            source /etc/profile.d/toolchain-home.sh 2>/dev/null || true
         unset PYTHONPATH VIRTUAL_ENV
         export IDF_TOOLS_PATH=${CONTAINER_HOME}/.espressif
         export IDF_PATH=${CONTAINER_HOME}/sdk/esp/${IDF_NAME}

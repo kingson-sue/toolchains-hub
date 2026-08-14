@@ -14,18 +14,18 @@
 
 ## 为什么工具链也不打进镜像？
 
-工具链 + Python venv 体积大，且与 `IDF_INSTALL_TARGETS` 相关。装在 `data/tools/` 后可用 `export-data` 迁移，无需每次从 Espressif CDN 重下。安装过程在容器内执行，保证 `HOME=/usmile`、Python 3.10、glibc 环境一致。
+工具链 + Python venv 体积大，且与 `IDF_INSTALL_TARGETS` 相关。装在 `data/tools/` 后可用 `export-data` 迁移，无需每次从 Espressif CDN 重下。安装过程在容器内执行，保证 `HOME=/toolchain`、Python 3.10、glibc 环境一致。
 
 ## 路径约定
 
 | 角色 | 路径 |
 |------|------|
-| 容器 HOME | `/usmile`（固定，与宿主机用户名无关） |
-| SDK 源码 | `/usmile/sdk/esp/esp-idf-v6.0.2` ← 挂载自 `data/sdk/...` |
-| 工具/venv | `/usmile/.espressif` ← 挂载自 `data/tools/espressif` |
-| 工程 | `/usmile/workspace` ← 工程根目录下的 `workspace/` |
+| 容器 HOME | `/toolchain`（固定，与宿主机用户名无关） |
+| SDK 源码 | `/toolchain/sdk/esp/esp-idf-v6.0.2` ← 挂载自 `data/sdk/...` |
+| 工具/venv | `/toolchain/.espressif` ← 挂载自 `data/tools/espressif` |
+| 工程 | `/toolchain/workspace` ← 工程根目录下的 `workspace/` |
 
-别名 `esp_idf` 通过 `~` 解析到 `/usmile`。
+别名 `esp_idf` 通过 `~` 解析到 `/toolchain`。
 
 ## 部署流水线
 

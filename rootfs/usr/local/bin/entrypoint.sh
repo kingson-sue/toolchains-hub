@@ -1,8 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
-HOME_DIR="${CONTAINER_HOME:-/usmile}"
-USER_NAME="${CONTAINER_USER:-usmile}"
+HOME_DIR="${CONTAINER_HOME:-/toolchain}"
+USER_NAME="${CONTAINER_USER:-toolchain}"
 HOST_UID="${HOST_UID:-}"
 HOST_GID="${HOST_GID:-}"
 export HOME="${HOME_DIR}"

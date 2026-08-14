@@ -48,7 +48,7 @@ DOCKER_USE_SUDO="${DOCKER_USE_SUDO:-false}"
 CONTAINER_NAME="${CONTAINER_NAME:-toolchains-hub-${name_suffix}}"
 SSH_HOST_PORT="${SSH_HOST_PORT:-}"
 SSH_HOST_PORT_START="${SSH_HOST_PORT_START:-3022}"
-SSH_PASSWORD="${SSH_PASSWORD:-usmile123}"
+SSH_PASSWORD="${SSH_PASSWORD:-toolchain168}"
 MOUNT_HOST_SSH="${MOUNT_HOST_SSH:-true}"
 INSTALL_TOOLS="${INSTALL_TOOLS:-true}"
 IDF_INSTALL_TARGETS="${IDF_INSTALL_TARGETS:-esp32,esp32s3}"
@@ -58,10 +58,10 @@ PIP_TRUSTED_HOST="${PIP_TRUSTED_HOST:-pypi.tuna.tsinghua.edu.cn}"
 PIP_DEFAULT_TIMEOUT="${PIP_DEFAULT_TIMEOUT:-120}"
 
 # 容器内固定 HOME，与宿主机用户名无关，便于迁移
-CONTAINER_HOME="${CONTAINER_HOME:-/usmile}"
-CONTAINER_USER="${CONTAINER_USER:-usmile}"
+CONTAINER_HOME="${CONTAINER_HOME:-/toolchain}"
+CONTAINER_USER="${CONTAINER_USER:-toolchain}"
 
-# 宿主机 UID/GID：容器启动时对齐 usmile，避免 workspace 权限冲突
+# 宿主机 UID/GID：容器启动时对齐 toolchain，避免 workspace 权限冲突
 if [[ -z "${HOST_UID:-}" || -z "${HOST_GID:-}" ]]; then
     if [[ "$(id -u)" != "0" ]]; then
         HOST_UID="$(id -u)"

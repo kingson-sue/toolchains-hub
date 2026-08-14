@@ -15,7 +15,8 @@ echo "SSH 默认密码将写入镜像: ${SSH_PASSWORD}"
 docker_compose build \
     --build-arg BASE_IMAGE="${BASE_IMAGE}" \
     --build-arg SSH_PASSWORD="${SSH_PASSWORD}" \
-    --build-arg CONTAINER_HOME="${CONTAINER_HOME}"
+    --build-arg CONTAINER_HOME="${CONTAINER_HOME}" \
+    --build-arg CONTAINER_USER="${CONTAINER_USER}"
 
 echo
 echo "[ok] 镜像构建完成: ${IMAGE_REF}"
