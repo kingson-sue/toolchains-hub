@@ -1,0 +1,5 @@
+# 可选挂载宿主机 SSH 密钥：docker compose -f docker-compose.yml -f docker-compose.ssh.yml
+services:
+  toolchains-hub:
+    volumes:
+      - ${HOST_SSH_DIR}:${CONTAINER_HOME:-/usmile}/.ssh:ro

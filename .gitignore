@@ -1,0 +1,24 @@
+# Auto-generated placeholders — real values come from config.env via scripts/lib.sh
+.env
+config.env
+
+# 工具链 / Python venv：目录保留，内容不上库
+/data/tools/**
+!/data/tools/.gitkeep
+
+# SDK 源码由 make clone 从 GitHub 拉取
+/data/sdk/**
+!/data/sdk/.gitkeep
+
+# 开发工程目录（与 data/ 同级）：目录保留，内容不上库
+/workspace/**
+!/workspace/.gitkeep
+
+# Packaged exports
+*.tar.gz
+*.log
+
+# Editor
+.idea/
+.vscode/
+*.swp
